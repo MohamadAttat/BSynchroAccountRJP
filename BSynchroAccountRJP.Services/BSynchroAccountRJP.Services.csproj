@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BSynchroAccountRJP.Models\BSynchroAccountRJP.Models.csproj" />
+    <ProjectReference Include="..\BSynchroAccountRJP.Utility\BSynchroAccountRJP.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
