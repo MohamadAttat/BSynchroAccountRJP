@@ -14,5 +14,12 @@ namespace BSynchroAccountRJP.Models.Model
         //deposit or withdraw 
         public string Type { get; set; }
         public virtual Account Account { get; set; }
+
+        public Transaction(int accountId, decimal amount = 0, string type= "deposit")
+        {
+            AccountId = accountId;
+            Amount = amount;
+            Type = type;
+        }
     }
 }

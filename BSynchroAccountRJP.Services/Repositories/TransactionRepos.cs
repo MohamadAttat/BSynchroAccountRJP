@@ -30,6 +30,11 @@ namespace BSynchroAccountRJP.Services.Repositories
             return _repo.GetById(Id, includeProperties);
         }
 
+        public void Create(Transaction tr)
+        {
+            _repo.Create(tr);
+        }
+
         public void Save()
         {
             _repo.Save();

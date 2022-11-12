@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+label.error {
+    color: red;
+    font-size: 13px;
+    display: block;
+}

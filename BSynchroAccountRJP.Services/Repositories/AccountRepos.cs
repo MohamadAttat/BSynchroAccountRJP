@@ -29,6 +29,11 @@ namespace BSynchroAccountRJP.Services.Repositories
         {
             return _repo.GetById(Id, includeProperties);
         }
+        //creates a new account for the customer
+        public void Create(Account acc)
+        {
+            _repo.Create(acc);
+        }
 
         public void Save()
         {

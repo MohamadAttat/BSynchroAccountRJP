@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSynchroAccountRJP.Utility"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSynchroAccountRJP.Services", "BSynchroAccountRJP.Services\BSynchroAccountRJP.Services.csproj", "{9BBF24E4-4651-448D-B67B-DBD26A332E78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSynchroAccountRJP.API", "BSynchroAccountRJP.API\BSynchroAccountRJP.API.csproj", "{7B19EAD4-F8D7-4D7B-B292-ED286DC5AA5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9BBF24E4-4651-448D-B67B-DBD26A332E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BBF24E4-4651-448D-B67B-DBD26A332E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BBF24E4-4651-448D-B67B-DBD26A332E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B19EAD4-F8D7-4D7B-B292-ED286DC5AA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B19EAD4-F8D7-4D7B-B292-ED286DC5AA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B19EAD4-F8D7-4D7B-B292-ED286DC5AA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B19EAD4-F8D7-4D7B-B292-ED286DC5AA5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

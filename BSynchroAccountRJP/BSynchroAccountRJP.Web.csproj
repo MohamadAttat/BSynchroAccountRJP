@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,8 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BSynchroAccountRJP.Models\BSynchroAccountRJP.Models.csproj" />
-    <ProjectReference Include="..\BSynchroAccountRJP.Services\BSynchroAccountRJP.Services.csproj" />
-    <ProjectReference Include="..\BSynchroAccountRJP.Utility\BSynchroAccountRJP.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,6 @@
     <title>@ViewData["Title"] - BSynchroAccountRJP</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BSynchroAccountRJP.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -32,6 +31,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <div id="alert-holder" style="display:none;"></div>
             @RenderBody()
         </main>
     </div>

@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form id="addCustomerAccountForm">
+    <div class="form-group mb-3">
+        <label for="customerId">Customer ID</label>
+        <input type="number" class="form-control" name="customerId" id="customerId" required />
+        <small id="emailHelp" class="form-text text-muted">Please enter the customer ID in order to open an account.</small>
+    </div>
+    <div class="form-group mb-3">
+        <label for="initialCredit">Initial Credit</label>
+        <input type="number" step="any" class="form-control" name="initialCredit" id="initialCredit" required />
+    </div>
+
+    <input class="btn btn-primary" type="button" value="Add Customer" onclick="submitForm()" />
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        var $ = jQuery.noConflict();
+        function submitForm() {
+            var customerIdDOM = $("#customerId");
+            var initialCreditDOM = $("#initialCredit");
+            if (customerIdDOM.valid() && initialCreditDOM.valid()) {
+                var sentData = JSON.stringify({ CustomerId: customerIdDOM.val(), InitialCredit: initialCreditDOM.val() });
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:7219/api/Account",
+                    data: sentData,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                        if (response == "customer-not-found") {
+                            ShowMessage("warning", "Customer Not Found");
+                            return;
+                        }
+                        var createdAccount = JSON.parse(response);
+                        var customerName = createdAccount.Name;
+                        var balance = createdAccount.Balance;
+                        ShowMessage("success", `An account has been created for the Customer ${customerName} with an amount of ${balance}`);
+                    },
+                    failure: function(response) {
+                        ShowMessage("danger", response);
+                    },
+                    error: function(response) {
+                        ShowMessage("danger", response.responseText);
+                    }
+                });
+            }
+        }
+    </script>
+}

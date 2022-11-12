@@ -13,5 +13,13 @@ namespace BSynchroAccountRJP.Models.Model
         public decimal Balance { get; set; }
         public Customer Customer { get; set; }
         public IEnumerable<Transaction> Transactions { get; set; }
+
+        public Account(int customerId,decimal balance = 0)
+        {
+            CustomerId = customerId;
+            Balance = balance;
+            DateCreated = DateTime.Now;
+            DateUpdated = DateCreated;
+        }
     }
 }

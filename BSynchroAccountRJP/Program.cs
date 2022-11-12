@@ -1,15 +1,15 @@
 
-using BSynchroAccountRJP.Models.Model;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.Extensions.Options;
-using BSynchroAccountRJP.Utility.Data;
-using BSynchroAccountRJP.Utility.Infrastructure;
-using BSynchroAccountRJP.Utility.Repositories;
-using BSynchroAccountRJP.Services.Infrastructure;
-using BSynchroAccountRJP.Services.Repositories;
-
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddJsonOptions(options =>
@@ -28,18 +28,6 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-#region Repositories Implementation
-builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
-builder.Services.AddScoped<ICustomer, CustomerRepos>();
-builder.Services.AddScoped<IRepository<Account>, Repository<Account>>();
-builder.Services.AddScoped<IAccount, AccountRepos>();
-builder.Services.AddScoped<IRepository<Transaction>, Repository<Transaction>>();
-builder.Services.AddScoped<ITransaction, TransactionRepos>();
-#endregion
-
-builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultCS")
-    ));
 
 var app = builder.Build();
 
@@ -58,6 +46,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCors();
 
 app.UseAuthorization();
 

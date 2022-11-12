@@ -12,6 +12,7 @@ namespace BSynchroAccountRJP.Services.Infrastructure
     {
         IEnumerable<Account> GetAll(Expression<Func<Account, bool>>? filter = null, Func<IQueryable<Account>, IOrderedQueryable<Account>>? orderBy = null, string includeProperties = "");
         Account GetById(int Id, string includeProperties = "");
+        void Create(Account acc);
         void Save();
     }
 }
