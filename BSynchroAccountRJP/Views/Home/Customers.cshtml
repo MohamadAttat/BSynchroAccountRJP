@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Customers";
+}
+<h1>@ViewData["Title"]</h1>
+<table id="customers-table" class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        var $ = jQuery.noConflict();
+        $.get("https://localhost:7219/api/Customer/GetCustomers", function(data) {
+            jsonData = JSON.parse(data);
+            $("#customers-table tbody").html(renderCustomersRows(jsonData));
+        })
+
+        function renderCustomersRows(data) {
+            var html = '';
+            data.forEach((e,i) => {
+                html += '<tr>';
+                html += `<td>${i}</td>`;
+                html += `<td>${e.Name}</td>`;
+                html += `<td>${e.Surname}</td>`;
+                html += `<td><a href="/Home/CustomerDetail/${e.Id}" class="btn btn-info">Details</a></td>`;
+                html += '</tr>';
+            })
+            return html;
+        }
+    </script>
+}

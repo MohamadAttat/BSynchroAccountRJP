@@ -41,7 +41,9 @@
                         var createdAccount = JSON.parse(response);
                         var customerName = createdAccount.Name;
                         var balance = createdAccount.Balance;
-                        ShowMessage("success", `An account has been created for the Customer ${customerName} with an amount of ${balance}`);
+                        ShowMessage("success", `An account has been created for the Customer ${customerName} with an amount of ${balance} USD`);
+                        customerIdDOM.val('');
+                        initialCreditDOM.val('');
                     },
                     failure: function(response) {
                         ShowMessage("danger", response);

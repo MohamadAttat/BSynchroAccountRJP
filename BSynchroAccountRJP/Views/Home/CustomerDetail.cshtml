@@ -1,0 +1,51 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Customer Detail";
+}
+<h1>@ViewData["Title"]</h1>
+
+<h2 id="customer-title" class="mb-5" style="color:brown;"></h2>
+
+<h3 class="mb-5">Accounts</h3>
+
+<div id="accounts-table">
+</div>
+
+@section Scripts{
+    <script>
+        var $ = jQuery.noConflict();
+        $.get("https://localhost:7219/api/Customer/GetById/@Model", function(data) {
+            //data here is an object Customer with its nested related Accounts and Transactions
+            console.log(data);
+            loadCustomerInHTML(data);
+        })
+
+        function loadCustomerInHTML(customer) {
+            $("#customer-title").html(`${customer.name} ${customer.surname}`)
+            var accountsHtml = "<div class='account-holder'>";
+            if (customer.accounts.length > 0) {
+                customer.accounts.forEach((acc) => {
+                    accountsHtml += "<div class='account-holder mb-5'>";
+                    accountsHtml += `<h4>Account#${acc.id} - ${acc.balance} USD</h4>`;
+                    var transactionsHtml = "";
+                    transactionsHtml += "<table class='table'>";
+                    transactionsHtml += '<thead><tr><th scope="col">#</th><th scope="col">Amount (USD)</th><th scope="col">Type</th><th scope="col">Transaction Date</th></tr></thead><tbody>';
+                    acc.transactions.forEach((tr) => {
+                        transactionsHtml += "<tr>";
+                        transactionsHtml += `<th>${tr.id}</th>`;
+                        transactionsHtml += `<th>${tr.amount}</th>`;
+                        transactionsHtml += `<th>${tr.type}</th>`;
+                        transactionsHtml += `<th>${tr.dateCreated}</th>`;
+                        transactionsHtml += "</tr>";
+                    })
+                    transactionsHtml += "</tbody></table>";
+                    accountsHtml += transactionsHtml;
+                    accountsHtml += "</div>";
+                })
+            $("#accounts-table").html(accountsHtml);
+            }else{
+            $("#accounts-table").html("<h3>No accounts for this customer</h3>");
+            }
+        }
+    </script>
+}

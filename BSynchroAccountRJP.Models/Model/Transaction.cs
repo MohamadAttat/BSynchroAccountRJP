@@ -20,6 +20,8 @@ namespace BSynchroAccountRJP.Models.Model
             AccountId = accountId;
             Amount = amount;
             Type = type;
+            DateCreated = DateTime.Now;
+            DateUpdated = DateCreated;
         }
     }
 }

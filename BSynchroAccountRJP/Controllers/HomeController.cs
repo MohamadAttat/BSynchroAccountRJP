@@ -1,4 +1,5 @@
 ﻿using BSynchroAccountRJP.Models;
+using BSynchroAccountRJP.Models.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -18,9 +19,13 @@ namespace BSynchroAccountRJP.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Customers()
         {
             return View();
+        }
+        public IActionResult CustomerDetail(int Id)
+        {
+            return View(Id);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

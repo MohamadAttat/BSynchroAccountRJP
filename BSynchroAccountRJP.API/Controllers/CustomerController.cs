@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace BSynchroAccountRJP.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -24,9 +24,17 @@ namespace BSynchroAccountRJP.API.Controllers
         }
 
         [HttpGet]
-        public Customer GetById(int Id)
+        public async Task<JsonResult> GetCustomers()
         {
-            return this._customerRepos.GetById(Id, "Accounts");
+            var json = JsonConvert.SerializeObject(this._customerRepos.GetAll(null, m => m.OrderBy(x => x.Name)));
+            return new JsonResult(json);
+        }
+
+        [HttpGet("{Id:int}")]
+        public async Task<Customer> GetById(int Id)
+        {
+            //loading the customer along with his accounts and his accounts transactions in a nested object
+            return this._customerRepos.GetById(Id, "Accounts,Accounts.Transactions");
         }
     }
 }
